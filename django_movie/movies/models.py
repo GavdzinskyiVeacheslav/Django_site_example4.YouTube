@@ -1,7 +1,8 @@
-from audioop import reverse
+from django.urls import reverse
 from datetime import date
 from operator import mod
 from django.db import models
+
 
 
 class Category(models.Model):
@@ -87,8 +88,6 @@ class Movie(models.Model):
         verbose_name_plural = "Фильмы"
 
     
-
-
 class MovieShots(models.Model):
     """Кадры из фильма"""
     title = models.CharField("Заголовок", max_length=100)
@@ -97,7 +96,7 @@ class MovieShots(models.Model):
     movie = models.ForeignKey(
         Movie, verbose_name='Фильм', on_delete=models.CASCADE)
 
-    def ___str__(self):
+    def __str__(self):
         return self.title
 
     class Meta:

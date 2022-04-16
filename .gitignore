@@ -1,5 +1,6 @@
 # Byte-compiled / optimized / DLL files
 mynotes
+mynotes.txt
 __pycache__/
 *.py[cod]
 *$py.class
@@ -128,4 +129,4 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# django-insecure-d-yu!x@jd7jh+)fe0kc3yr_@6#w*uj8!z_)1xa2z!$igqg5a++
+#### 

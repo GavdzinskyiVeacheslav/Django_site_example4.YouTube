@@ -17,4 +17,4 @@ class MovieDetailView(DetailView):
     slug_field = "url"
 
 
-   ####
+   

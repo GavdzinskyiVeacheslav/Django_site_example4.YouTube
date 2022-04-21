@@ -7,7 +7,7 @@ from .models import Category, Genre, Movie, MovieShots, Actor, Rating, RatingSta
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 class MovieAdminForm(forms.ModelForm):
-    description = forms.CharField(label="Описание", widget=CKEditorUploadingWidget())
+    description = forms.CharField(label="Description", widget=CKEditorUploadingWidget())
     class Meta:
         model = Movie
         fields = '__all__'
@@ -15,12 +15,12 @@ class MovieAdminForm(forms.ModelForm):
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    """Категории"""
+    """Categories"""
     list_display = ("id", "name", "url")
     list_display_links = ("name",)
 
 class ReviewInline(admin.TabularInline):
-    """Отзывы на странице фильма"""
+    """Reviews on the movie page"""
     model = Reviews
     extra = 1
     readonly_fields = ("name", "email")
@@ -32,11 +32,11 @@ class MovieShotsInline(admin.TabularInline):
 
     def get_image(self, obj):
         return mark_safe(f'<img src={obj.image.url} width="200" height="110"')
-    get_image.short_description = "Изображение"
+    get_image.short_description = "Image"
 
 @admin.register(Movie)
 class MovieAdmin(admin.ModelAdmin):
-    """Фильмы"""
+    """Films"""
     list_display = ("title", "category", "url", "draft")
     list_filter = ("category", "year")
     search_fields = ("title", "category__name")
@@ -72,68 +72,68 @@ class MovieAdmin(admin.ModelAdmin):
     
     def get_image(self, obj):
         return mark_safe(f'<img src={obj.poster.url} width="100" height="200"')
-    get_image.short_description = "Постер"
+    get_image.short_description = "Poster"
 
     def unpublish(self, request, queryset):
-        """Снять с публикации"""
+        """Remove from publication"""
         row_update = queryset.update(draft=True)
         if row_update == 1:
-            message_bit = "1 запись была обновлена"
+            message_bit = "1 post was updated"
         else:
-            message_bit = f"{row_update} записей были обновлены"
+            message_bit = f"{row_update} records have been updated"
         self.message_user(request, f"{message_bit}")
 
     def publish(self, request, queryset):
-        """Опубликовать"""
+        """Publish"""
         row_update = queryset.update(draft=False)
         if row_update == 1:
-            message_bit = "1 запись была обновлена"
+            message_bit = "1 post was updated"
         else:
-            message_bit = f"{row_update} записей были обновлены"
+            message_bit = f"{row_update} records have been updated"
         self.message_user(request, f"{message_bit}")
 
-    publish.short_description = "Опубликовать"
+    publish.short_description = "Publish"
     publish.allowed_permissions = ('change', )
 
-    unpublish.short_description = "Снять с публикации"
+    unpublish.short_description = "Remove from publication"
     unpublish.allowed_permissions = ('change',)
 
 @admin.register(Reviews)
 class ReviewAdmin(admin.ModelAdmin):
-    """Отзывы"""
+    """Reviews"""
     list_display = ("name", "email", "parent", "movie", "id")
     readonly_fields = ("name", "email")
 
 @admin.register(Genre)
 class GenreAdmin(admin.ModelAdmin):
-    """Жанры"""
+    """Genres"""
     list_display = ("name", "url")
 
 
 @admin.register(Actor)
 class ActorAdmin(admin.ModelAdmin):
-    """Актёры"""
+    """Actors"""
     list_display = ("name", "age", "get_image")
     readonly_fields = ("get_image",)
 
     def get_image(self, obj):
         return mark_safe(f'<img src={obj.image.url} width="50" height="60"')
-    get_image.short_description = "Изображение"
+    get_image.short_description = "Image"
 
 @admin.register(Rating)
 class RatingAdmin(admin.ModelAdmin):
-    """Рейтинг"""
+    """Rating"""
     list_display = ("movie", "ip")
 
 @admin.register(MovieShots)
 class MovieShotsAdmin(admin.ModelAdmin):
-    """Кадры из фильма"""
+    """Film stills"""
     list_display = ("title", "movie", "get_image", )
     readonly_fields = ("get_image",)
 
     def get_image(self, obj):
         return mark_safe(f'<img src={obj.image.url} width="50" height="60"')
-    get_image.short_description = "Изображение"
+    get_image.short_description = "Image"
 
 
 admin.site.register(RatingStar)

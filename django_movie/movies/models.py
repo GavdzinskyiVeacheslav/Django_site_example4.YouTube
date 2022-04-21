@@ -1,12 +1,10 @@
 from django.urls import reverse
 from datetime import date
-from operator import mod
 from django.db import models
 
 
-
 class Category(models.Model):
-    """ Категория """
+    """Category"""
     name = models.CharField("Категория", max_length=150)
     description = models.TextField("Описание")
     url = models.SlugField(max_length=160, unique=True)
@@ -20,7 +18,7 @@ class Category(models.Model):
 
 
 class Actor(models.Model):
-    """Актёры и режиссёры"""
+    """Actor and directors """
     name = models.CharField("Имя", max_length=100)
     age = models.PositiveSmallIntegerField("Возраст", default=0)
     description = models.TextField("Описание")
@@ -35,7 +33,7 @@ class Actor(models.Model):
 
 
 class Genre(models.Model):
-    """Жанры"""
+    """Genres"""
     name = models.CharField("Имя", max_length=100)
     description = models.TextField("Описание")
     url = models.SlugField(max_length=160, unique=True)
@@ -49,7 +47,7 @@ class Genre(models.Model):
 
 
 class Movie(models.Model):
-    """Фильмы"""
+    """Movies"""
     title = models.CharField("название", max_length=100)
     tagline = models.CharField("Слоган", max_length=100, default='')
     description = models.TextField("Описание")
@@ -92,7 +90,7 @@ class Movie(models.Model):
 
     
 class MovieShots(models.Model):
-    """Кадры из фильма"""
+    """Film stills"""
     title = models.CharField("Заголовок", max_length=100)
     description = models.TextField("Описание")
     image = models.ImageField("Изображение", upload_to='movie_shots/')
@@ -108,7 +106,7 @@ class MovieShots(models.Model):
 
 
 class RatingStar(models.Model):
-    """Звезда рейтинга"""
+    """Star rating"""
     value = models.SmallIntegerField("Значение", default=0)
 
     def __str__(self):
@@ -120,7 +118,7 @@ class RatingStar(models.Model):
 
 
 class Rating(models.Model):
-    """Рейтинг"""
+    """Rating"""
     ip = models.CharField("IP адресс", max_length=15)
     star = models.ForeignKey(
         RatingStar, on_delete=models.CASCADE, verbose_name='звезда')
@@ -136,7 +134,7 @@ class Rating(models.Model):
 
 
 class Reviews(models.Model):
-    """Отзывы"""
+    """Reviews"""
     email = models.EmailField()
     name = models.CharField("Имя", max_length=100)
     text = models.TextField("Сообщение", max_length=5000)

@@ -1,5 +1,5 @@
 function ajaxSend(url, params) {
-    // Отправляем запрос
+    // Sending a request
     fetch(`${url}?${params}`, {
         method: 'GET',
         headers: {
@@ -15,7 +15,7 @@ function ajaxSend(url, params) {
 // const forms = document.querySelector('form[name=filter]');
 
 // forms.addEventListener('submit', function (e) {
-//     // Получаем данные из формы
+//     //Getting data from a form
 //     e.preventDefault();
 //     let url = this.action;
 //     let params = new URLSearchParams(new FormData(this)).toString();
@@ -23,7 +23,7 @@ function ajaxSend(url, params) {
 // });
 
 function render(data) {
-    // Рендер шаблона
+    // Template render
     let template = Hogan.compile(html);
     let output = template.render(data);
 
@@ -60,16 +60,16 @@ let html = '\
 {{/movies}}'
 
 
-// // Add star rating
-// const rating = document.querySelector('form[name=rating]');
+// Add star rating
+const rating = document.querySelector('form[name=rating]');
 
-// rating.addEventListener("change", function (e) {
-//     // Получаем данные из формы
-//     let data = new FormData(this);
-//     fetch(`${this.action}`, {
-//         method: 'POST',
-//         body: data
-//     })
-//         .then(response => alert("Рейтинг установлен"))
-//         .catch(error => alert("Ошибка"))
-// });
+rating.addEventListener("change", function (e) {
+    // Getting data from a form
+    let data = new FormData(this);
+    fetch(`${this.action}`, {
+        method: 'POST',
+        body: data
+    })
+        .then(response => alert("Рейтинг установлен"))
+        .catch(error => alert("Ошибка"))
+});

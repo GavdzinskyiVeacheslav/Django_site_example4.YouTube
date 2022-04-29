@@ -18,19 +18,16 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -41,9 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "ckeditor",
-    "ckeditor_uploader",
+    'ckeditor',
+    'ckeditor_uploader',
     'movies',
+    'snowpenguin.django.recaptcha3',
 ]
 
 MIDDLEWARE = [
@@ -199,8 +197,15 @@ CKEDITOR_CONFIGS = {
     }
 }
 
+RECAPTCHA_PUBLIC_KEY = '6LfP7K8fAAAAAJb8e-glwupkkf6R4NT9Eq5x3wKr'
+RECAPTCHA_PRIVATE_KEY = '6LfP7K8fAAAAALeHlSOCLKdpW2-YVRhO3U4Gz9CM'
+RECAPTCHA_DEFAULT_ACTION = 'generic'
+RECAPTCHA_SCORE_THRESHOLD = 0.5
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+

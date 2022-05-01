@@ -8,12 +8,13 @@ Django framework good practice: Database architecture, models, templates, ckedit
 
 Run the following commands to bootsrtap your enviroment:
 
-  git clone https://github.com/GavdzinskyiVeacheslav/Django_site_example4.YouTube.git
-  cd django_movie
-  python -m venv venv
-  venv\Scripts\activate
-  pip install -r requirements.txt
-
+    git clone https://github.com/GavdzinskyiVeacheslav/Django_site_example4.YouTube.git
+    cd django_movie
+    python -m venv venv
+    venv\Scripts\activate
+    pip install -r requirements.txt
+    
 Run the app locally:
+    
+    python manage.py runserver
 
-  python manage.py runserver
